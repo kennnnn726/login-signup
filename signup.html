@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image: url(background.avif);
+      background-size: cover;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+    }
+
+    .main {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%), url(Shadows.jpg);
+      background-position: center;
+      background-size: cover;
+      z-index: 0;
+    }
+
+    .navbar {
+      width: 100vw;
+      height: 60px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 50px;
+      color:#dfdcda;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 2px;
+      font-style: italic;
+    }
+
+    main {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      z-index: 1;
+      position: relative;
+    }
+
+    .container {
+      margin-top: 60px;
+      background: #ece3e3;
+      border-radius: 32px;
+      box-shadow: 0 8px 36px rgba(123, 79, 42, 0.16);
+      padding: 42px 32px;
+      width: 370px;
+      max-width: 96vw;
+      text-align: center;
+      border: 3px solid #7b4f2a;
+      z-index: 3;
+    }
+
+    .form {
+      text-align: left;
+    }
+
+    .form h2 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #7b4f2a;
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 6px;
+      color: #5c3a17;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-top: 16px;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1.7px solid #7b4f2a;
+      font-size: 1rem;
+      background: #ede1d1;
+      margin-bottom: 2px;
+    }
+
+    .form input:focus {
+      border-color: #c2b280;
+      outline: none;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: center; 
+      margin-top: 22px;
+    }
+
+    .form button {
+      padding: 12px 32px;
+      background: linear-gradient(90deg, #a67c52, #7b4f2a);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.13rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      box-shadow: 0 2px 10px rgba(123,79,42, 0.14);
+      transition: background 0.2s;
+    }
+
+    .form button:hover {
+      background: linear-gradient(90deg, #7b4f2a, #a67c52);
+    }
+
+    .switch {
+      margin-top: 24px;
+      font-size: 1rem;
+      color: #5c3a17;
+      text-align: center;
+    }
+
+    .switch a {
+      color: #a67c52;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .switch a:hover {
+      color: #7b4f2a;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 23px 6px;
+        width: 99vw;
+        border-radius: 16px;
+      }
+      .navbar {
+        padding: 7px 5px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="navbar">
+      <h2 class="logo">ALI</h2>
+    </div>
+
+    <main>
+      <div class="container">
+        
+        <form class="form" id="signup-form" autocomplete="on">
+          <h2>Create Account</h2>
+
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" placeholder="Enter your username" required>
+
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" placeholder="Enter your password" required>
+
+          <label for="signup-confirm">Confirm Password</label>
+          <input type="password" id="signup-confirm" name="confirm" placeholder="Re-enter your password" required>
+
+          <div class="form-row">
+            
+            <button type="submit" id="signup-btn">Sign Up</button>
+          </div>
+
+          <div class="switch">
+            Already have an account? <a href="login.html">Log In</a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  
+  <script>
+    $(function(){
+      
+      $("#signup-password").keyup(function(){
+        if($(this).val().length < 6){
+          $(this).css("border-color","red");
+        } else {
+          $(this).css("border-color","#7b4f2a");
+        }
+      });
+
+      
+      $("#signup-confirm").blur(function(){
+        if($(this).val() !== $("#signup-password").val()){
+          alert("Passwords do not match!");
+        }
+      });
+
+      
+      $("#signup-form").submit(function(e){
+        e.preventDefault();
+        alert("Account created successfully!");
+        window.location.href="login.html";
+      });
+
+      
+      $("#signup-btn").hover(
+        function(){ $(this).css("transform","scale(1.05)"); },
+        function(){ $(this).css("transform","scale(1)"); }
+      );
+    });
+  </script>
+</body>
+</html>
